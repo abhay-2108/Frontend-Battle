@@ -18,14 +18,19 @@ EcoMetrics is a cutting-edge, fully responsive sustainability website that showc
 
 ## 🚀 Live Demo
 
-🔗 **[View Live Website](https://vercel.com/akhileshpharma1985-3985s-projects/v0-frontend-battle)**
+🔗 **[View Live Website](https://frontend-battle-steel.vercel.app/)**
 
 
 
 ## 🖼️ Screenshots
 
-*(Screenshots section placeholder – insert actual image links or screenshots here)*
+![image](https://github.com/user-attachments/assets/a849616d-0109-4121-8d1b-1590707ce578)
 
+![image](https://github.com/user-attachments/assets/4cd8d894-9816-4edf-aa0b-e4de67b03202)
+
+![image](https://github.com/user-attachments/assets/2f36fd9b-e7e5-4a1d-9197-4af59a03bf88)
+
+![image](https://github.com/user-attachments/assets/e9b17a78-6a69-4df3-82e5-a664eea1dd79)
 
 
 ## 🛠️ Tech Stack
