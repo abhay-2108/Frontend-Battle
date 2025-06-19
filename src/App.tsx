@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import {
   Moon,
   Sun,
@@ -40,9 +40,10 @@ import "./App.css"
 import CarouselSwitch from "./components/CarouselSwitch"
 import EnhancedParallax from "./components/EnhancedParallax"
 import EnhancedRipple from "./components/EnhancedRipple"
+import { useTheme } from "next-themes"
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false)
+  const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDashboardOpen, setIsDashboardOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -56,321 +57,8 @@ function App() {
     projects: 0,
   })
 
-  // All useEffect hooks must be called before any early returns
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme) {
-      setDarkMode(savedTheme === "dark")
-    } else {
-      setDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
-    }
-
-    // Animate stats on load
-    const timer = setTimeout(() => {
-      setAnimatedStats({
-        users: 15000,
-        emissions: 45048,
-        savings: 3200000,
-        projects: 850,
-      })
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode)
-    localStorage.setItem("theme", darkMode ? "dark" : "light")
-  }, [darkMode])
-
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view")
-        }
-      })
-    }, observerOptions)
-
-    const animatedElements = document.querySelectorAll(".animate-on-scroll")
-    animatedElements.forEach((el) => observer.observe(el))
-
-    return () => {
-      animatedElements.forEach((el) => observer.unobserve(el))
-    }
-  }, [currentHomepage])
-
-  // Define all constants and functions after hooks
-  const dashboardOptions = [
-    {
-      id: "financial",
-      name: "Financial Dashboard",
-      icon: <PieChart className="h-4 w-4" />,
-      description: "Revenue & expense tracking",
-      color: "blue",
-    },
-    {
-      id: "stats",
-      name: "Analytics Dashboard",
-      icon: <LineChart className="h-4 w-4" />,
-      description: "Performance metrics",
-      color: "purple",
-    },
-    {
-      id: "carbon",
-      name: "Carbon Dashboard",
-      icon: <Activity className="h-4 w-4" />,
-      description: "Emissions monitoring",
-      color: "green",
-    },
-  ]
-
-  const features = [
-    {
-      icon: <Brain className="h-8 w-8" />,
-      title: "AI-Powered Insights",
-      description:
-        "Advanced machine learning algorithms provide predictive analytics and automated recommendations for carbon reduction.",
-      gradient: "from-blue-500 via-purple-500 to-pink-500",
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Enterprise Security",
-      description:
-        "Bank-level encryption, SOC 2 compliance, and advanced security protocols protect your sensitive environmental data.",
-      gradient: "from-green-500 via-teal-500 to-blue-500",
-    },
-    {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Real-Time Processing",
-      description:
-        "Process millions of data points in seconds with our high-performance analytics engine and live dashboards.",
-      gradient: "from-yellow-500 via-orange-500 to-red-500",
-    },
-    {
-      icon: <Target className="h-8 w-8" />,
-      title: "Goal Tracking",
-      description:
-        "Set and monitor sustainability targets with automated progress tracking and milestone notifications.",
-      gradient: "from-purple-500 via-pink-500 to-red-500",
-    },
-    {
-      icon: <Database className="h-8 w-8" />,
-      title: "Data Integration",
-      description:
-        "Seamlessly connect with 100+ data sources including IoT sensors, ERP systems, and third-party APIs.",
-      gradient: "from-cyan-500 via-blue-500 to-purple-500",
-    },
-    {
-      icon: <Recycle className="h-8 w-8" />,
-      title: "Circular Economy",
-      description:
-        "Track material flows, waste reduction, and circular economy metrics to optimize resource utilization.",
-      gradient: "from-green-500 via-emerald-500 to-teal-500",
-    },
-  ]
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "Chief Sustainability Officer",
-      company: "GreenTech Industries",
-      content:
-        "EcoMetrics transformed our carbon tracking completely. We achieved a 40% reduction in emissions within 6 months and saved over $2M in operational costs.",
-      rating: 5,
-      avatar: "SJ",
-      gradient: "from-green-400 via-emerald-500 to-teal-600",
-    },
-    {
-      name: "Michael Chen",
-      role: "CFO",
-      company: "Sustainable Solutions Inc.",
-      content:
-        "The financial insights are incredible. The platform pays for itself through the cost savings it identifies. ROI was achieved in just 3 months.",
-      rating: 5,
-      avatar: "MC",
-      gradient: "from-blue-400 via-purple-500 to-pink-600",
-    },
-    {
-      name: "Emma Rodriguez",
-      role: "Operations Director",
-      company: "EcoBuilders Ltd.",
-      content:
-        "User-friendly interface with enterprise-grade capabilities. Our entire team was productive within days, not weeks.",
-      rating: 5,
-      avatar: "ER",
-      gradient: "from-purple-400 via-pink-500 to-red-600",
-    },
-    {
-      name: "David Thompson",
-      role: "Head of Sustainability",
-      company: "EcoTech Solutions",
-      content:
-        "EcoMetrics has revolutionized how we approach sustainability reporting. The AI-powered insights helped us identify cost-saving opportunities we never knew existed.",
-      rating: 5,
-      avatar: "DT",
-      gradient: "from-orange-400 via-red-500 to-pink-600",
-    },
-    {
-      name: "Lisa Park",
-      role: "Environmental Manager",
-      company: "CleanEnergy Corp",
-      content:
-        "The real-time monitoring capabilities are outstanding. We can now track our carbon footprint across all facilities and make immediate adjustments when needed.",
-      rating: 5,
-      avatar: "LP",
-      gradient: "from-teal-400 via-cyan-500 to-blue-600",
-    },
-    {
-      name: "Robert Kim",
-      role: "VP of Operations",
-      company: "Sustainable Manufacturing",
-      content:
-        "Implementation was seamless and the support team is exceptional. We're now ahead of our sustainability goals by 18 months thanks to EcoMetrics.",
-      rating: 5,
-      avatar: "RK",
-      gradient: "from-indigo-400 via-purple-500 to-pink-600",
-    },
-  ]
-
-  const statsData = [
-    {
-      title: "Managed portfolio carbon footprint",
-      unit: "tCO₂e",
-      current: "45,048",
-      change: "16%",
-      changeType: "increase" as const,
-      fromYear: "from 2019",
-      yearlyData: [
-        { year: "2022", value: 45048, percentage: 100 },
-        { year: "2021", value: 14111, percentage: 31 },
-        { year: "2020", value: 32813, percentage: 73 },
-        { year: "2019", value: 38673, percentage: 86 },
-      ],
-      gradient: "from-red-500 via-pink-500 to-purple-500",
-    },
-    {
-      title: "Managed portfolio energy intensity",
-      unit: "kWh/m²",
-      current: "123",
-      change: "22%",
-      changeType: "decrease" as const,
-      fromYear: "from 2019",
-      yearlyData: [
-        { year: "2022", value: 123, percentage: 78 },
-        { year: "2021", value: 128, percentage: 82 },
-        { year: "2020", value: 135, percentage: 86 },
-        { year: "2019", value: 157, percentage: 100 },
-      ],
-      gradient: "from-green-500 via-emerald-500 to-teal-500",
-    },
-    {
-      title: "Managed portfolio energy consumption",
-      unit: "kWh",
-      current: "47,790,662",
-      change: "27%",
-      changeType: "decrease" as const,
-      fromYear: "from 2019",
-      yearlyData: [
-        { year: "2022", value: 47790662, percentage: 73 },
-        { year: "2021", value: 49324077, percentage: 76 },
-        { year: "2020", value: 48784205, percentage: 75 },
-        { year: "2019", value: 65198706, percentage: 100 },
-      ],
-      gradient: "from-blue-500 via-cyan-500 to-teal-500",
-    },
-  ]
-
-  const chartData = [
-    { value: 549, label: "A" },
-    { value: 278, label: "B" },
-    { value: 875, label: "C" },
-    { value: 617, label: "D" },
-    { value: 506, label: "E" },
-    { value: 36, label: "F" },
-    { value: 185, label: "G" },
-    { value: 191, label: "H" },
-    { value: 122, label: "I" },
-    { value: 550, label: "J" },
-    { value: 881, label: "K" },
-    { value: 539, label: "L" },
-    { value: 269, label: "M" },
-    { value: 29, label: "N" },
-    { value: 82, label: "O" },
-    { value: 44, label: "P" },
-    { value: 109, label: "Q" },
-    { value: 106, label: "R" },
-    { value: 607, label: "S" },
-    { value: 528, label: "T" },
-  ]
-
-  const brandKits = [
-    {
-      name: "EcoCorp",
-      icon: <Cloud className="h-6 w-6 text-green-400" />,
-      description: "Sustainable energy solutions",
-      selected: false,
-    },
-    {
-      name: "GreenTech",
-      icon: <Building className="h-6 w-6 text-blue-400" />,
-      description: "Smart building management",
-      selected: true,
-    },
-    {
-      name: "CleanFactory",
-      icon: <Factory className="h-6 w-6 text-purple-400" />,
-      description: "Industrial carbon tracking",
-      selected: false,
-    },
-  ]
-
-  const carouselItems = [
-    {
-      id: "sustainability",
-      title: "Sustainability First",
-      description: "Leading the future of environmental intelligence with cutting-edge analytics",
-      gradient: "from-green-500 via-emerald-600 to-teal-700",
-      content: (
-        <div className="flex space-x-4">
-          <button className="btn-primary">Explore Solutions</button>
-          <button className="btn-secondary">Watch Demo</button>
-        </div>
-      ),
-    },
-    {
-      id: "analytics",
-      title: "AI-Powered Analytics",
-      description: "Transform your data into actionable insights with machine learning algorithms",
-      gradient: "from-blue-500 via-purple-600 to-indigo-700",
-      content: (
-        <div className="flex space-x-4">
-          <button className="btn-primary">Start Free Trial</button>
-          <button className="btn-secondary">Learn More</button>
-        </div>
-      ),
-    },
-    {
-      id: "impact",
-      title: "Measurable Impact",
-      description: "Track, measure, and optimize your environmental footprint in real-time",
-      gradient: "from-orange-500 via-red-600 to-pink-700",
-      content: (
-        <div className="flex space-x-4">
-          <button className="btn-primary">See Results</button>
-          <button className="btn-secondary">Case Studies</button>
-        </div>
-      ),
-    },
-  ]
-
   const toggleTheme = () => {
-    setDarkMode(!darkMode)
+    setTheme(theme === "dark" ? "light" : "dark");
     setShowNotification(true)
     setTimeout(() => setShowNotification(false), 2000)
   }
@@ -554,7 +242,7 @@ function App() {
                   onClick={toggleTheme}
                   className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110"
                 >
-                  {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                 </button>
               </EnhancedRipple>
             </div>
@@ -566,7 +254,7 @@ function App() {
                   onClick={toggleTheme}
                   className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
                 >
-                  {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                 </button>
               </EnhancedRipple>
               <EnhancedRipple>
