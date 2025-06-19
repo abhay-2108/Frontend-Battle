@@ -62,31 +62,45 @@ EcoMetrics is a cutting-edge, fully responsive sustainability website that showc
 
 
 
+
 ## 📁 Project Structure
 
-\`\`\`bash
-├── app/                    # Next.js App Router
-│   ├── globals.css         # Global styles
-│   ├── layout.tsx          # Root layout
-│   └── page.tsx            # Main page
-├── components/             # Reusable UI components
-│   ├── ui/                 # shadcn/ui components
-│   └── theme-provider.tsx  # Theme context and management
-├── src/                    # Source files
-│   ├── components/         # Custom dashboard/animation components
-│   │   ├── CarbonHomepage.tsx
-│   │   ├── FinancialHomepage.tsx
-│   │   ├── StatsHomepage.tsx
-│   │   ├── EnhancedParallax.tsx
-│   │   ├── EnhancedRipple.tsx
-│   │   └── CarouselSwitch.tsx
-│   ├── App.tsx             # Root application entry
-│   └── App.css             # Global component styling
-├── public/                 # Static assets (e.g., images)
-├── hooks/                  # Custom React hooks
-├── lib/                    # Utility functions and helpers
-└── styles/                 # Additional stylesheets
-\`\`\`
+```bash
+├── app/                        # Next.js App Router (App directory)
+│   ├── globals.css             # Global CSS styles
+│   ├── layout.tsx              # Root layout component (shared across pages)
+│   └── page.tsx                # Main landing page
+│
+├── components/                 # Reusable shared UI components
+│   ├── ui/                     # shadcn/ui components (buttons, inputs, etc.)
+│   └── theme-provider.tsx      # Light/Dark theme management
+│
+├── src/                        # Core application source files
+│   ├── App.tsx                 # App entry component
+│   ├── App.css                 # Global styles for app-level components
+│   └── components/             # Page-specific or custom-built components
+│       ├── CarbonHomepage.tsx     # Carbon dashboard section
+│       ├── FinancialHomepage.tsx  # Financial dashboard section
+│       ├── StatsHomepage.tsx      # Analytics/Stats section
+│       ├── EnhancedParallax.tsx   # Custom parallax scroll effects
+│       ├── EnhancedRipple.tsx     # Ripple interaction handler
+│       └── CarouselSwitch.tsx     # Carousel/slider component
+│
+├── public/                     # Static assets (e.g., images, icons)
+│   └── ...                     # Favicon, logo, etc.
+│
+├── hooks/                      # Custom React hooks
+│   └── useTheme.ts             # Example: hook for theme switching
+│
+├── lib/                        # Utility functions and helpers
+│   └── formatNumber.ts         # e.g., locale-based number formatting
+│
+├── styles/                     # Standalone or modular stylesheets
+│   └── animations.css          # Animation definitions (e.g., parallax)
+│
+└── README.md                   # Project documentation
+```
+
 
 
 ## 🧑‍💻 Getting Started
