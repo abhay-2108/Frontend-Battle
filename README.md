@@ -26,11 +26,22 @@ EcoMetrics is a cutting-edge, fully responsive sustainability website that showc
 
 ![image](https://github.com/user-attachments/assets/a849616d-0109-4121-8d1b-1590707ce578)
 
+![image](https://github.com/user-attachments/assets/e862954c-2848-4b86-a59d-aa27b70a4906)
+
+
 ![image](https://github.com/user-attachments/assets/4cd8d894-9816-4edf-aa0b-e4de67b03202)
+
+![image](https://github.com/user-attachments/assets/736cbac0-8242-418b-8400-2b016ec929ef)
+
 
 ![image](https://github.com/user-attachments/assets/2f36fd9b-e7e5-4a1d-9197-4af59a03bf88)
 
+![image](https://github.com/user-attachments/assets/e225ec46-f74d-4469-b2fc-2dc6e52959c5)
+
 ![image](https://github.com/user-attachments/assets/e9b17a78-6a69-4df3-82e5-a664eea1dd79)
+
+![image](https://github.com/user-attachments/assets/fe3dd27d-a497-4104-bce8-4fd106c7a37d)
+
 
 
 ## 🛠️ Tech Stack
